@@ -1,0 +1,27 @@
+{
+  "name": "changes2020",
+  "version": "1.0.0",
+  "description": "Changes in behaviours due to the 2020 pandemic",
+  "main": "index.js",
+  "dependencies": {
+    "csv-parser": "^2.3.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikitaDanilenko/changes2020.git"
+  },
+  "keywords": [
+    "data science",
+    "data analysis"
+  ],
+  "author": "",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/nikitaDanilenko/changes2020/issues"
+  },
+  "homepage": "https://github.com/nikitaDanilenko/changes2020#readme"
+}
