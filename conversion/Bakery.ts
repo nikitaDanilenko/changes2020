@@ -1,6 +1,3 @@
-const fs = require('fs')
-const csvParser = require('csv-parser')
-
 export type BakeryData = {
   date: Date,
   bread: number,
@@ -17,21 +14,22 @@ type RawBakeryData = {
   Umsatz: number
 }
 
-export const parseRaw = (filePath: string) => {
-  const results: RawBakeryData[] = []
-  fs.createReadStream(filePath)
-    .on('error', () => console.log('Failure during file stream creation'))
-    .on('data', (data) => {
-        const rawData = {
-          Datum: new Date(data["Datum"]),
-          Warengruppe: parseInt(data["Warengruppe"]),
-          Umsatz: parseFloat(data["Umsatz"])
-        }
-        results.push(data)
-      }
+export const separator = ','
+
+export const parseRaw = (csvLines: string) => {
+  csvLines
+    .split('\n')
+    .map((line) =>
+      line
+        .split(separator)
+        .map((blocks) => {
+          return {
+            Datum: blocks[0],
+            Warengruppe: parseInt(blocks[1]),
+            Umsatz: parseInt(blocks[2])
+          }
+        })
     )
-    .pipe(csvParser())
-  return results
 }
 
 const groupOrZero = (rawBakeryData: RawBakeryData, position: number) => {
