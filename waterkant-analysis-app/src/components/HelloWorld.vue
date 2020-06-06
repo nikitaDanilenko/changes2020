@@ -1,15 +1,20 @@
 <template>
-  <div class="small">
-    <!-- <bar :chart-data="datacollection"></bar>
-    <button @click="fillData()">Randomize</button>-->
-    <canvas id="planet-chart"></canvas>
+  <div class="size">
+    <v-container fluid>
+      <v-row align="right">
+        <v-col class="d-flex" cols="12" sm="6">
+          <v-select :items="items" v-model="select" label="Datensatz-Auswahl" @change="changeDataSet($select.text)"></v-select>
+        </v-col>
+      </v-row>
+    </v-container>
+    <canvas id="chart1"></canvas>
   </div>
 </template>
 
 <script>
-// import Bar from "./Bar.js";
 import Chart from "chart.js";
-import planetChartData from "./chart-data.js";
+import planetChartData from "./ChartData.js";
+import planetChartData2 from "./ChartData2.js";
 
 export default {
   // components: {
@@ -18,31 +23,15 @@ export default {
   data() {
     return {
       datacollection: null,
-      planetChartData: planetChartData
+      planetChartData: planetChartData,
+      planetChartData2: planetChartData2,
+      items: ["Foo", "Bar", "Fizz", "Buzz"]
     };
   },
   mounted() {
-    // this.fillData();
-    this.createChart("planet-chart", this.planetChartData);
+    this.createChart("chart1", this.planetChartData);
   },
   methods: {
-    fillData() {
-      this.datacollection = {
-        labels: [this.getRandomInt(), this.getRandomInt()],
-        datasets: [
-          {
-            label: "Data One",
-            backgroundColor: "#f87979",
-            data: [this.getRandomInt(), this.getRandomInt()]
-          },
-          {
-            label: "Data One",
-            backgroundColor: "#f87979",
-            data: [this.getRandomInt(), this.getRandomInt()]
-          }
-        ]
-      };
-    },
     createChart(chartId, chartData) {
       const ctx = document.getElementById(chartId);
       const myChart = new Chart(ctx, {
@@ -51,16 +40,17 @@ export default {
         options: chartData.options
       });
     },
-    getRandomInt() {
-      return Math.floor(Math.random() * (50 - 5 + 1)) + 5;
+    changeDataSet(item) {
+      this.createChart("chart1", item.value);
+      console.log(item);
     }
   }
 };
 </script>
 
 <style>
-.small {
-  max-width: 600px;
+.size {
+  max-width: 800px;
   margin: 150px auto;
 }
 </style>
