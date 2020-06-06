@@ -1,7 +1,7 @@
 <template>
   <div class="size">
     <v-card color="#ff9800" dark>
-      <h2>Bäckerei Daten im Durchschnitt von 30 Tagen</h2>
+      <h2>Bäckerei Daten im gleitenden Mittelwert von 30 Tagen</h2>
       <h3>16. bis 23. März (Hamsterkäufe + Absturz)</h3>
       <h3>17. April (Einzelhandelseröffnung bis 800m²)</h3>
       <h3>18. Mai (Reduzierung Kontaktsperre)</h3>
@@ -10,31 +10,31 @@
     <v-container fluid>
       <v-row align="right">
         <v-col class="d-flex" cols="12" sm="6">
-          <v-select :items="items" label="Datensatz-Auswahl" @change="changeBakeryDataSet"></v-select>
+          <v-select :items="bakeryItems" label="Datensatz-Auswahl" @change="changeBakeryDataSet"></v-select>
         </v-col>
       </v-row>
     </v-container>
     <canvas id="bakeryChart"></canvas>
 
     <v-card color="#ff9800" dark>
-      <h2>Sprottenflotte Daten im Durchschnitt von 14 Tagen</h2>
+      <h2>Sprottenflotte Daten im gleitenden Mittelwert von 14 Tagen</h2>
     </v-card>
     <v-container fluid>
       <v-row align="right">
         <v-col class="d-flex" cols="12" sm="6">
-          <v-select :items="items" label="Datensatz-Auswahl" @change="changeBikesharingDataSet"></v-select>
+          <v-select :items="bikesharingItems" label="Datensatz-Auswahl" @change="changeBikesharingDataSet"></v-select>
         </v-col>
       </v-row>
     </v-container>
     <canvas id="bikesharingChart"></canvas>
 
     <v-card color="#ff9800" dark>
-      <h2>Fußgängerbewegungen Daten im Durchschnitt von 30 Tagen</h2>
+      <h2>Fußgängerbewegungen Daten im gleitenden Mittelwert von 30 Tagen</h2>
     </v-card>
     <v-container fluid>
       <v-row align="right">
         <v-col class="d-flex" cols="12" sm="6">
-          <v-select :items="items" label="Datensatz-Auswahl" @change="changePedestrianDataSet"></v-select>
+          <v-select :items="pedestrianItems" label="Datensatz-Auswahl" @change="changePedestrianDataSet"></v-select>
         </v-col>
       </v-row>
     </v-container>
@@ -55,6 +55,9 @@ export default {
       bakeryChartData: bakeryChartData,
       bikesharingChartData: bikesharingChartData,
       pedestrianChartData: pedestrianChartData,
+      bakeryItems: [bakeryChartData.name],
+      bikesharingItems: [bikesharingChartData.name],
+      pedestrianItems: [pedestrianChartData.name]
     };
   },
   mounted() {
