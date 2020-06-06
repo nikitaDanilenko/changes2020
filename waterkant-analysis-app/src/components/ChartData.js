@@ -1,7 +1,6 @@
-import Bar from "./Bar";
-
 export const planetChartData = {
     type: 'line',
+    name: 'Darstellung 1',
     data: {
         labels: ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune'],
         datasets: [

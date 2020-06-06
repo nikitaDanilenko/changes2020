@@ -23,10 +23,6 @@ export default Vue.extend({
 
   components: {
     HelloWorld
-  },
-
-  data() {
-    //
   }
 });
 </script>

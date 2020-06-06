@@ -5,6 +5,7 @@
         <v-col class="d-flex" cols="12" sm="6">
           <v-select :items="items" label="Datensatz-Auswahl" @change="changeDataSet"></v-select>
         </v-col>
+        <!-- <v-btn> </v-btn> -->
       </v-row>
     </v-container>
     <canvas id="chart1"></canvas>
@@ -25,7 +26,7 @@ export default {
       datacollection: null,
       planetChartData: planetChartData,
       planetChartData2: planetChartData2,
-      items: ["Foo", "Bar", "Fizz", "Buzz"]
+      items: [planetChartData.name, planetChartData2.name]
     };
   },
   mounted() {
@@ -41,7 +42,12 @@ export default {
       });
     },
     changeDataSet(event) {
-      this.createChart("chart1", event);
+      if (event == "Foo") {
+        this.createChart("chart1", this.planetChartData);
+      } else if (event == "Bar") {
+        this.createChart("chart1", this.planetChartData2);
+      }
+      // this.createChart("chart1", event);
       console.log(event);
     }
   }
