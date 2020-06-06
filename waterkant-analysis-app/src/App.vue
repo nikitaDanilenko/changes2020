@@ -25,8 +25,8 @@ export default Vue.extend({
     HelloWorld
   },
 
-  data: () => ({
+  data() {
     //
-  })
+  }
 });
 </script>
