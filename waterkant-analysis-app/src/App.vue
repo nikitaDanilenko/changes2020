@@ -9,24 +9,26 @@
     </v-app-bar>
 
     <v-content>
-      <HelloWorld />
+      <Content />
     </v-content>
+    <v-footer
+      color="primary"
+      app
+    >
+      <span class="white--text">&copy; 2020 - C09-The Impact of Corona on Our Life</span>
+    </v-footer>
   </v-app>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import HelloWorld from "./components/HelloWorld.vue";
+import Content from "./components/Content.vue";
 
 export default Vue.extend({
   name: "App",
 
   components: {
-    HelloWorld
-  },
-
-  data: () => ({
-    //
-  })
+    Content
+  }
 });
 </script>
