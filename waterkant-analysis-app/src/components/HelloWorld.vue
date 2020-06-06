@@ -3,7 +3,7 @@
     <v-container fluid>
       <v-row align="right">
         <v-col class="d-flex" cols="12" sm="6">
-          <v-select :items="items" v-model="select" label="Datensatz-Auswahl" @change="changeDataSet($select.text)"></v-select>
+          <v-select :items="items" label="Datensatz-Auswahl" @change="changeDataSet"></v-select>
         </v-col>
       </v-row>
     </v-container>
@@ -40,9 +40,9 @@ export default {
         options: chartData.options
       });
     },
-    changeDataSet(item) {
-      this.createChart("chart1", item.value);
-      console.log(item);
+    changeDataSet(event) {
+      this.createChart("chart1", event);
+      console.log(event);
     }
   }
 };
