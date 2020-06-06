@@ -1,7 +1,11 @@
 <template>
   <div class="size">
     <v-card color="#ff9800" dark>
-      <h2>Bäckerei Daten</h2>
+      <h2>Bäckerei Daten im Durchschnitt von 30 Tagen</h2>
+      <h3>16. bis 23. März (Hamsterkäufe + Absturz)</h3>
+      <h3>17. April (Einzelhandelseröffnung bis 800m²)</h3>
+      <h3>18. Mai (Reduzierung Kontaktsperre)</h3>
+      <h3>19. Mai Eröffnung Gastronomie</h3>
     </v-card>
     <v-container fluid>
       <v-row align="right">
@@ -13,7 +17,7 @@
     <canvas id="bakeryChart"></canvas>
 
     <v-card color="#ff9800" dark>
-      <h2>Sprottenflotte Daten</h2>
+      <h2>Sprottenflotte Daten im Durchschnitt von 14 Tagen</h2>
     </v-card>
     <v-container fluid>
       <v-row align="right">
@@ -25,24 +29,12 @@
     <canvas id="bikesharingChart"></canvas>
 
     <v-card color="#ff9800" dark>
-      <h2>Online Helpdesk Daten</h2>
+      <h2>Fußgängerbewegungen Daten im Durchschnitt von 30 Tagen</h2>
     </v-card>
     <v-container fluid>
       <v-row align="right">
         <v-col class="d-flex" cols="12" sm="6">
-          <v-select :items="items" label="Datensatz-Auswahl" @change="changeBikesharingDataSet"></v-select>
-        </v-col>
-      </v-row>
-    </v-container>
-    <canvas id="helpdeskChart"></canvas>
-
-    <v-card color="#ff9800" dark>
-      <h2>Fußgängerbewegungen Daten</h2>
-    </v-card>
-    <v-container fluid>
-      <v-row align="right">
-        <v-col class="d-flex" cols="12" sm="6">
-          <v-select :items="items" label="Datensatz-Auswahl" @change="changeBikesharingDataSet"></v-select>
+          <v-select :items="items" label="Datensatz-Auswahl" @change="changePedestrianDataSet"></v-select>
         </v-col>
       </v-row>
     </v-container>
@@ -52,26 +44,23 @@
 
 <script>
 import Chart from "chart.js";
-import planetChartData from "./ChartData.js";
-import planetChartData2 from "./ChartData2.js";
+import bakeryChartData from "./BakeryData.js";
+import bikesharingChartData from "./BikesharingData";
+import pedestrianChartData from "./PedestrianData";
 
 export default {
-  // components: {
-  //   Bar
-  // },
   data() {
     return {
       datacollection: null,
-      planetChartData: planetChartData,
-      planetChartData2: planetChartData2,
-      items: [planetChartData.name, planetChartData2.name]
+      bakeryChartData: bakeryChartData,
+      bikesharingChartData: bikesharingChartData,
+      pedestrianChartData: pedestrianChartData,
     };
   },
   mounted() {
-    this.createChart("bakeryChart", this.planetChartData);
-    this.createChart("bikesharingChart", this.planetChartData);
-    this.createChart("helpdeskChart", this.planetChartData);
-    this.createChart("pedestrianChart", this.planetChartData);
+    this.createChart("bakeryChart", this.bakeryChartData);
+    this.createChart("bikesharingChart", this.bikesharingChartData);
+    this.createChart("pedestrianChart", this.pedestrianChartData);
   },
   methods: {
     createChart(chartId, chartData) {
@@ -83,33 +72,20 @@ export default {
       });
     },
     changeBakeryDataSet(event) {
-      if (event == planetChartData.name) {
-        this.createChart("bakeryChart", this.planetChartData);
-      } else if (event == planetChartData2.name) {
-        this.createChart("bakeryChart", this.planetChartData2);
+      if (event == bakeryChartData.name) {
+        this.createChart("bakeryChart", this.bakeryChartData);
       }
     },
     changeBikesharingDataSet(event) {
-      if (event == planetChartData.name) {
-        this.createChart("bikesharingChart", this.planetChartData);
-      } else if (event == planetChartData2.name) {
-        this.createChart("bikesharingChart", this.planetChartData2);
-      }
-    },
-    changeOnlineHelpdeskDataSet(event) {
-      if (event == planetChartData.name) {
-        this.createChart("helpdeskChart", this.planetChartData);
-      } else if (event == planetChartData2.name) {
-        this.createChart("helpdeskChart", this.planetChartData2);
-      }
+      if (event == bikesharingChartData.name) {
+        this.createChart("bikesharingChart", this.bikesharingChartData);
+      } 
     },
     changePedestrianDataSet(event) {
-      if (event == planetChartData.name) {
-        this.createChart("pedestrianChart", this.planetChartData);
-      } else if (event == planetChartData2.name) {
-        this.createChart("pedestrianChart", this.planetChartData2);
-      }
-    }
+      if (event == pedestrianChartData.name) {
+        this.createChart("pedestrianChart", this.pedestrianChartData);
+      } 
+    },
   }
 };
 </script>
@@ -120,6 +96,13 @@ export default {
   margin: 50px auto;
 }
 
+h2 {
+  margin-left: 20px;
+}
+
+h3 {
+  margin-left: 30px;
+}
 canvas {
   margin-bottom: 75px;
 }
