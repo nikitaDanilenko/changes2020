@@ -1,18 +1,16 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
+  <p>Hello World</p>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import { Bar } from "vue-chartjs";
 
 export default {
-  name: "Home",
-  components: {
-    HelloWorld
+  extends: Bar,
+  props: ['chartdata', 'options'],
+  mounted() {
+    this.renderChart(this.chartdata, this.options);
   }
 };
 </script>

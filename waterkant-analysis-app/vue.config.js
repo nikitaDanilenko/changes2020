@@ -1,3 +1,4 @@
 module.exports = {
-  transpileDependencies: ["vuetify"]
+  transpileDependencies: ['vuetify', 'vue-echarts',
+    'resize-detector']
 };
